@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatório!</title>
+
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Firebase -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-firestore.js"></script>
+
+    <script>
+      var db = firebase.firestore();
+      var rows = [];
+
+      db.collection("contacts")
+        .get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+            let tel = doc.data().tel;
+            if (Array.isArray(tel)) {
+              tel.forEach(function (t) {
+                rows.push(t);
+              });
+            } else {
+              rows.push(tel);
+            }
+          });
+
+          var csv = "data:text/csv;charset=utf-8," + rows.join("\n");
+          var encoded_uri = encodeURI(csv);
+          window.open(encoded_uri);
+        });
+    </script>
+    <!-- /Firebase -->
+  </body>
+</html>
