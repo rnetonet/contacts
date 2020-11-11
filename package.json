@@ -1,0 +1,22 @@
+{
+  "name": "contacts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rnetonet/contacts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rnetonet/contacts/issues"
+  },
+  "homepage": "https://github.com/rnetonet/contacts#readme",
+  "dependencies": {
+    "firebase-tools": "^8.15.1"
+  }
+}
